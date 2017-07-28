@@ -43,3 +43,24 @@
 -- FROM comments
 -- INNER JOIN posts ON posts.id = comments.posts_id
 -- WHERE comments.body LIKE '%USB%';
+--11
+-- SELECT posts.title AS "post_title", users.first_name, users.last_name , comments.body AS "comment_body"
+-- FROM users
+-- INNER JOIN posts ON users.id = posts.users_id
+-- INNER JOIN comments ON posts.id = comments.posts_id
+-- WHERE comments.body LIKE '%matrix%';
+--12
+-- SELECT  users.first_name, users.last_name , comments.body AS "comment_body"
+-- FROM users
+-- INNER JOIN comments ON users.id = comments.users_id
+-- INNER JOIN posts ON posts.id = comments.posts_id
+-- WHERE comments.body LIKE '%SSL%'
+-- AND posts.content LIKE '%dolorum%';
+--13
+-- SELECT  users.first_name AS "post_author_first_name", users.last_name AS  "post_author_last_name", posts.title AS "post_title", comments.body AS "comment_body", users.username AS "comment_author_username"
+-- FROM users
+-- INNER JOIN posts ON posts.users_id = users.id
+-- INNER JOIN comments ON posts.id = comments.posts_id
+-- WHERE (comments.body LIKE '%SSL%'AND posts.content LIKE '%nemo%')
+-- OR (comments.body LIKE '%firewall%'
+-- AND posts.content LIKE '%nemo%');
