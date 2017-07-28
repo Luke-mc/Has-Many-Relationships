@@ -5,38 +5,34 @@ CREATE USER has_many_user;
 
 CREATE DATABASE has_many_blogs WITH OWNER has_many_user;
 
-CREATE TABLE IF NOT EXISTS users
-(
- userID serial NOT NULL PRIMARY KEY,
- username character varying(90) NOT NULL,
- first_name character varying(90),
- last_name character varying(90),
- created_at timestamp NOT NULL DEFAULT NOW(),
- updated_at timestamp NOT NULL DEFAULT NOW(),
+\c has_many_blogs
+
+CREATE TABLE IF NOT EXISTS users (
+ id serial NOT NULL PRIMARY KEY,
+ username varchar(90) NOT NULL,
+ first_name varchar(90),
+ last_name varchar(90),
+ created_at timestamp NOT NULL DEFAULT now(),
+ updated_at timestamp NOT NULL DEFAULT now()
 );
 
-CREATE TABLE IF NOT EXISTS posts
-(
- postsID serial NOT NULL PRIMARY KEY,
- title character varying(180),
- url character varying(510),
+CREATE TABLE IF NOT EXISTS posts (
+ id serial NOT NULL PRIMARY KEY,
+ title varchar(180),
+ url varchar(510),
  content text,
  created_at timestamp NOT NULL DEFAULT NOW(),
  updated_at timestamp NOT NULL DEFAULT NOW(),
- PRIMARY KEY (id)
- users_ID int FOREIGN KEY REFERENCES users(userID)
+ users_id int REFERENCES users(id)
 );
 
-
-
-CREATE TABLE IF NOT EXISTS comments
-(
- commentsID serial NOT NULL PRIMARY KEY,
- make_code character varying(125) NOT NULL,
- make_title character varying(125) NOT NULL,
- model_code character varying(125) NOT NULL,
- model_title character varying(125) NOT NULL,
- year integer NOT NULL,
- users_ID int FOREIGN KEY REFERENCES users(userID),
- posts_ID int FOREIGN KEY REFERENCES posts(postsID)
+CREATE TABLE IF NOT EXISTS comments (
+ id serial NOT NULL PRIMARY KEY,
+ body varchar(510),
+ created_at timestamp NOT NULL DEFAULT NOW(),
+ updated_at timestamp NOT NULL DEFAULT NOW(),
+ users_id int REFERENCES users(id),
+ posts_id int REFERENCES posts(id)
 );
+
+\i scripts/blog_data.sql
