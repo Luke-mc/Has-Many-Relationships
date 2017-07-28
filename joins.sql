@@ -64,3 +64,12 @@
 -- WHERE (comments.body LIKE '%SSL%'AND posts.content LIKE '%nemo%')
 -- OR (comments.body LIKE '%firewall%'
 -- AND posts.content LIKE '%nemo%');
+--14
+-- SELECT COUNT(*)
+-- FROM posts
+-- INNER JOIN comments ON posts.id = comments.posts_id
+-- WHERE posts.created_at > '2015-07-14';
+--15
+-- SELECT * FROM users
+-- INNER JOIN comments ON users.id = comments.users_id
+-- WHERE comments.body LIKE '%programming%';
